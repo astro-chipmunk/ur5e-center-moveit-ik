@@ -1,0 +1,12 @@
+/build/
+/install/
+/log/
+__pycache__/
+*.py[cod]
+*.ja.md
+*.csv
+*.log
+.env
+.env.*
+*.pem
+*.key

@@ -1,0 +1,519 @@
+<?xml version='1.0' encoding='utf-8'?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro" name="ur5e_with_hand">
+  <xacro:include filename="$(find ur_description)/urdf/ur_macro.xacro" />
+  <xacro:include filename="$(find width22mm_hand_for_urdf_description)/urdf/materials.xacro" />
+  <xacro:include filename="$(find width22mm_hand_for_urdf_description)/urdf/width22mm_hand_for_urdf.trans" />
+  <xacro:include filename="$(find width22mm_hand_for_urdf_description)/urdf/width22mm_hand_for_urdf.gazebo" />
+  <link name="world" />
+  <xacro:ur_robot name="ur" tf_prefix="" parent="world" joint_limits_parameters_file="$(find ur_description)/config/ur5e/joint_limits.yaml" kinematics_parameters_file="$(find ur_description)/config/ur5e/default_kinematics.yaml" physical_parameters_file="$(find ur_description)/config/ur5e/physical_parameters.yaml" visual_parameters_file="$(find ur_description)/config/ur5e/visual_parameters.yaml" safety_limits="false" safety_pos_margin="0.15" safety_k_position="20" force_abs_paths="false">
+    <origin xyz="0 0 0" rpy="0 0 0" />
+  </xacro:ur_robot>
+    <!-- UR5_connect.stl -->
+  <link name="ur5_connect_link">
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://ur5e_hand_integration/meshes/UR5_connect.stl"
+          scale="0.001 0.001 0.001" />
+      </geometry>
+　　　<material name="silver" />
+    </visual>
+
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://ur5e_hand_integration/meshes/UR5_connect.stl"
+          scale="0.001 0.001 0.001" />
+      </geometry>
+    </collision>
+  </link>
+
+  <joint name="flange_to_ur5_connect" type="fixed">
+    <parent link="flange" />
+    <child link="ur5_connect_link" />
+    <origin xyz="0 0 0" rpy="0 0 0" />
+  </joint>
+  <link name="hand_base_link">
+    <inertial>
+      <origin xyz="-0.0007904769488600242 -0.031212216709746415 0.02766529972487043" rpy="0 0 0" />
+      <mass value="1.6680114562936887" />
+      <inertia ixx="0.003885" iyy="0.003352" izz="0.001138" ixy="-2e-06" iyz="-0.000312" ixz="2.4e-05" />
+    </inertial>
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="package://width22mm_hand_for_urdf_description/meshes/base_link.stl" scale="0.001 0.001 0.001" />
+      </geometry>
+      <material name="silver" />
+    </visual>
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="package://width22mm_hand_for_urdf_description/meshes/base_link.stl" scale="0.001 0.001 0.001" />
+      </geometry>
+    </collision>
+  </link>
+  <link name="hand_1st_link_right_1">
+    <inertial>
+      <origin xyz="0.00023290200381148596 0.007272430116913198 -0.0075160018401228944" rpy="0 0 0" />
+      <mass value="0.017286592080879903" />
+      <inertia ixx="1e-06" iyy="1e-06" izz="1e-06" ixy="0.0" iyz="-0.0" ixz="0.0" />
+    </inertial>
+    <visual>
+      <origin xyz="-0.077103 -0.070579 -0.000183" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="package://width22mm_hand_for_urdf_description/meshes/1st_link_right_1.stl" scale="0.001 0.001 0.001" />
+      </geometry>
+      <material name="silver" />
+    </visual>
+    <collision>
+      <origin xyz="-0.077103 -0.070579 -0.000183" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="package://width22mm_hand_for_urdf_description/meshes/1st_link_right_1.stl" scale="0.001 0.001 0.001" />
+      </geometry>
+    </collision>
+  </link>
+  <link name="hand_1st_link_left_1">
+    <inertial>
+      <origin xyz="-0.00023360267728014805 0.0072724301169107 -0.007516001840121969" rpy="0 0 0" />
+      <mass value="0.017286592080880143" />
+      <inertia ixx="1e-06" iyy="1e-06" izz="1e-06" ixy="-0.0" iyz="-0.0" ixz="-0.0" />
+    </inertial>
+    <visual>
+      <origin xyz="0.077125 -0.070579 -0.000183" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="package://width22mm_hand_for_urdf_description/meshes/1st_link_left_1.stl" scale="0.001 0.001 0.001" />
+      </geometry>
+      <material name="silver" />
+    </visual>
+    <collision>
+      <origin xyz="0.077125 -0.070579 -0.000183" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="package://width22mm_hand_for_urdf_description/meshes/1st_link_left_1.stl" scale="0.001 0.001 0.001" />
+      </geometry>
+    </collision>
+  </link>
+  <link name="hand_2nd_link_right_1">
+    <inertial>
+      <origin xyz="-0.0004333671458831706 0.02656601744262615 0.013400274051334225" rpy="0 0 0" />
+      <mass value="0.09626860886092398" />
+      <inertia ixx="4.8e-05" iyy="9e-06" izz="4.1e-05" ixy="-0.0" iyz="6e-06" ixz="-0.0" />
+    </inertial>
+    <visual>
+      <origin xyz="-0.077103 -0.010579 0.018333" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="package://width22mm_hand_for_urdf_description/meshes/2nd_link_right_1.stl" scale="0.001 0.001 0.001" />
+      </geometry>
+      <material name="silver" />
+    </visual>
+    <collision>
+      <origin xyz="-0.077103 -0.010579 0.018333" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="package://width22mm_hand_for_urdf_description/meshes/2nd_link_right_1.stl" scale="0.001 0.001 0.001" />
+      </geometry>
+    </collision>
+  </link>
+  <link name="hand_2nd_link_left_1">
+    <inertial>
+      <origin xyz="0.0004180677083763379 0.02657581218335988 -0.013400887024599888" rpy="0 0 0" />
+      <mass value="0.09626836426944219" />
+      <inertia ixx="4.8e-05" iyy="9e-06" izz="4.1e-05" ixy="-0.0" iyz="-6e-06" ixz="-0.0" />
+    </inertial>
+    <visual>
+      <origin xyz="0.077125 -0.010579 -0.003667" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="package://width22mm_hand_for_urdf_description/meshes/2nd_link_left_1.stl" scale="0.001 0.001 0.001" />
+      </geometry>
+      <material name="silver" />
+    </visual>
+    <collision>
+      <origin xyz="0.077125 -0.010579 -0.003667" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="package://width22mm_hand_for_urdf_description/meshes/2nd_link_left_1.stl" scale="0.001 0.001 0.001" />
+      </geometry>
+    </collision>
+  </link>
+  <link name="hand_parallel_3_right_1">
+    <inertial>
+      <origin xyz="-0.003326340415110096 0.006805729823492826 -0.007334068611829825" rpy="0 0 0" />
+      <mass value="0.029155945925160895" />
+      <inertia ixx="2e-06" iyy="1e-06" izz="2e-06" ixy="1e-06" iyz="0.0" ixz="-0.0" />
+    </inertial>
+    <visual>
+      <origin xyz="-0.087388 0.009992 -1e-06" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="package://width22mm_hand_for_urdf_description/meshes/parallel_3_right_1.stl" scale="0.001 0.001 0.001" />
+      </geometry>
+      <material name="silver" />
+    </visual>
+    <collision>
+      <origin xyz="-0.087388 0.009992 -1e-06" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="package://width22mm_hand_for_urdf_description/meshes/parallel_3_right_1.stl" scale="0.001 0.001 0.001" />
+      </geometry>
+    </collision>
+  </link>
+  <link name="hand_parallel_3_left_1">
+    <inertial>
+      <origin xyz="0.0033263353304661125 0.006806409818110038 -0.007333465535706213" rpy="0 0 0" />
+      <mass value="0.029158128134383704" />
+      <inertia ixx="2e-06" iyy="1e-06" izz="2e-06" ixy="-1e-06" iyz="-0.0" ixz="-0.0" />
+    </inertial>
+    <visual>
+      <origin xyz="0.087411 0.009992 -1e-06" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="package://width22mm_hand_for_urdf_description/meshes/parallel_3_left_1.stl" scale="0.001 0.001 0.001" />
+      </geometry>
+      <material name="silver" />
+    </visual>
+    <collision>
+      <origin xyz="0.087411 0.009992 -1e-06" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="package://width22mm_hand_for_urdf_description/meshes/parallel_3_left_1.stl" scale="0.001 0.001 0.001" />
+      </geometry>
+    </collision>
+  </link>
+  <link name="hand_parallel_1_right_1">
+    <inertial>
+      <origin xyz="0.035007355411474 4.931406981552311e-07 -0.007333333333333452" rpy="0 0 0" />
+      <mass value="0.07108195975238671" />
+      <inertia ixx="4e-06" iyy="2.5e-05" izz="2.1e-05" ixy="-0.0" iyz="0.0" ixz="0.0" />
+    </inertial>
+    <visual>
+      <origin xyz="-0.004703 -0.010579 0.0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="package://width22mm_hand_for_urdf_description/meshes/parallel_1_right_1.stl" scale="0.001 0.001 0.001" />
+      </geometry>
+      <material name="silver" />
+    </visual>
+    <collision>
+      <origin xyz="-0.004703 -0.010579 0.0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="package://width22mm_hand_for_urdf_description/meshes/parallel_1_right_1.stl" scale="0.001 0.001 0.001" />
+      </geometry>
+    </collision>
+  </link>
+  <link name="hand_parallel_1_left_1">
+    <inertial>
+      <origin xyz="-0.03500805608494445 4.931406972167457e-07 -0.007333333333333426" rpy="0 0 0" />
+      <mass value="0.07108195975238668" />
+      <inertia ixx="4e-06" iyy="2.5e-05" izz="2.1e-05" ixy="0.0" iyz="0.0" ixz="-0.0" />
+    </inertial>
+    <visual>
+      <origin xyz="0.004725 -0.010579 -0.0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="package://width22mm_hand_for_urdf_description/meshes/parallel_1_left_1.stl" scale="0.001 0.001 0.001" />
+      </geometry>
+      <material name="silver" />
+    </visual>
+    <collision>
+      <origin xyz="0.004725 -0.010579 -0.0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="package://width22mm_hand_for_urdf_description/meshes/parallel_1_left_1.stl" scale="0.001 0.001 0.001" />
+      </geometry>
+    </collision>
+  </link>
+  <link name="hand_parallel_2_right_1">
+    <inertial>
+      <origin xyz="0.03279471773129749 -1.5646796441299432e-06 -0.007335851062891091" rpy="0 0 0" />
+      <mass value="0.10739829706923744" />
+      <inertia ixx="6e-06" iyy="5.6e-05" izz="5.3e-05" ixy="-0.0" iyz="-0.0" ixz="-0.0" />
+    </inertial>
+    <visual>
+      <origin xyz="-0.014988 0.009992 -0.0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="package://width22mm_hand_for_urdf_description/meshes/parallel_2_right_1.stl" scale="0.001 0.001 0.001" />
+      </geometry>
+      <material name="silver" />
+    </visual>
+    <collision>
+      <origin xyz="-0.014988 0.009992 -0.0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="package://width22mm_hand_for_urdf_description/meshes/parallel_2_right_1.stl" scale="0.001 0.001 0.001" />
+      </geometry>
+    </collision>
+  </link>
+  <link name="hand_parallel_2_left_1">
+    <inertial>
+      <origin xyz="-0.03284275827139033 -6.86353200970817e-06 -0.007328159835816134" rpy="0 0 0" />
+      <mass value="0.10724613835828446" />
+      <inertia ixx="6e-06" iyy="5.6e-05" izz="5.3e-05" ixy="0.0" iyz="-0.0" ixz="-0.0" />
+    </inertial>
+    <visual>
+      <origin xyz="0.015011 0.009992 -0.0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="package://width22mm_hand_for_urdf_description/meshes/parallel_2_left_1.stl" scale="0.001 0.001 0.001" />
+      </geometry>
+      <material name="silver" />
+    </visual>
+    <collision>
+      <origin xyz="0.015011 0.009992 -0.0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="package://width22mm_hand_for_urdf_description/meshes/parallel_2_left_1.stl" scale="0.001 0.001 0.001" />
+      </geometry>
+    </collision>
+  </link>
+  <link name="hand_partial_gear_1_1">
+    <inertial>
+      <origin xyz="-4.192007927485142e-07 1.9241567304643936e-05 0.006120391635861642" rpy="0 0 0" />
+      <mass value="0.09130092532682364" />
+      <inertia ixx="2e-05" iyy="2e-05" izz="8e-06" ixy="-0.0" iyz="-0.0" ixz="0.0" />
+    </inertial>
+    <visual>
+      <origin xyz="0.014988 0.039992 0.009083" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="package://width22mm_hand_for_urdf_description/meshes/partial_gear_1_1.stl" scale="0.001 0.001 0.001" />
+      </geometry>
+      <material name="silver" />
+    </visual>
+    <collision>
+      <origin xyz="0.014988 0.039992 0.009083" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="package://width22mm_hand_for_urdf_description/meshes/partial_gear_1_1.stl" scale="0.001 0.001 0.001" />
+      </geometry>
+    </collision>
+  </link>
+  <link name="hand_gear_left_1">
+    <inertial>
+      <origin xyz="-2.0889067327695132e-06 -3.283184821642124e-06 -0.0078109883123514325" rpy="0 0 0" />
+      <mass value="0.06513190152665732" />
+      <inertia ixx="2.6e-05" iyy="2.6e-05" izz="5e-06" ixy="-0.0" iyz="0.0" ixz="0.0" />
+    </inertial>
+    <visual>
+      <origin xyz="0.015011 0.009992 -0.003668" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="package://width22mm_hand_for_urdf_description/meshes/gear_left_1.stl" scale="0.001 0.001 0.001" />
+      </geometry>
+      <material name="silver" />
+    </visual>
+    <collision>
+      <origin xyz="0.015011 0.009992 -0.003668" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="package://width22mm_hand_for_urdf_description/meshes/gear_left_1.stl" scale="0.001 0.001 0.001" />
+      </geometry>
+    </collision>
+  </link>
+  <link name="hand_gear_right_1">
+    <inertial>
+      <origin xyz="4.15933832159307e-06 2.7581910772775386e-06 -0.004350371980021132" rpy="0 0 0" />
+      <mass value="0.046544167928282615" />
+      <inertia ixx="1.4e-05" iyy="1.4e-05" izz="3e-06" ixy="-0.0" iyz="0.0" ixz="0.0" />
+    </inertial>
+    <visual>
+      <origin xyz="-0.015012 0.009992 -0.01075" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="package://width22mm_hand_for_urdf_description/meshes/gear_right_1.stl" scale="0.001 0.001 0.001" />
+      </geometry>
+      <material name="silver" />
+    </visual>
+    <collision>
+      <origin xyz="-0.015012 0.009992 -0.01075" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="package://width22mm_hand_for_urdf_description/meshes/gear_right_1.stl" scale="0.001 0.001 0.001" />
+      </geometry>
+    </collision>
+  </link>
+  <link name="hand_sprocket_left_1">
+    <inertial>
+      <origin xyz="-1.0387149041824612e-05 -1.9567797244685048e-05 0.013253745969579005" rpy="0 0 0" />
+      <mass value="0.028636831954603807" />
+      <inertia ixx="4e-06" iyy="4e-06" izz="1e-06" ixy="-0.0" iyz="0.0" ixz="0.0" />
+    </inertial>
+    <visual>
+      <origin xyz="0.004703 -0.010579 0.03905" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="package://width22mm_hand_for_urdf_description/meshes/sprocket_left_1.stl" scale="0.001 0.001 0.001" />
+      </geometry>
+      <material name="silver" />
+    </visual>
+    <collision>
+      <origin xyz="0.004703 -0.010579 0.03905" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="package://width22mm_hand_for_urdf_description/meshes/sprocket_left_1.stl" scale="0.001 0.001 0.001" />
+      </geometry>
+    </collision>
+  </link>
+  <link name="hand_sprocket_right_1">
+    <inertial>
+      <origin xyz="2.6906327113291467e-06 1.2445022358970395e-05 -0.013335075793706094" rpy="0 0 0" />
+      <mass value="0.028636719233348994" />
+      <inertia ixx="4e-06" iyy="4e-06" izz="1e-06" ixy="0.0" iyz="0.0" ixz="-0.0" />
+    </inertial>
+    <visual>
+      <origin xyz="-0.004703 -0.010579 -0.024805" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="package://width22mm_hand_for_urdf_description/meshes/sprocket_right_1.stl" scale="0.001 0.001 0.001" />
+      </geometry>
+      <material name="silver" />
+    </visual>
+    <collision>
+      <origin xyz="-0.004703 -0.010579 -0.024805" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="package://width22mm_hand_for_urdf_description/meshes/sprocket_right_1.stl" scale="0.001 0.001 0.001" />
+      </geometry>
+    </collision>
+  </link>
+  <link name="hand_crank_right_1">
+    <inertial>
+      <origin xyz="0.002219810994832372 0.030310152908369192 0.003850333333333401" rpy="0 0 0" />
+      <mass value="0.021697292582487714" />
+      <inertia ixx="7e-06" iyy="0.0" izz="7e-06" ixy="-0.0" iyz="0.0" ixz="0.0" />
+    </inertial>
+    <visual>
+      <origin xyz="-0.082103 -0.010579 0.011183" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="package://width22mm_hand_for_urdf_description/meshes/crank_right_1.stl" scale="0.001 0.001 0.001" />
+      </geometry>
+      <material name="silver" />
+    </visual>
+    <collision>
+      <origin xyz="-0.082103 -0.010579 0.011183" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="package://width22mm_hand_for_urdf_description/meshes/crank_right_1.stl" scale="0.001 0.001 0.001" />
+      </geometry>
+    </collision>
+  </link>
+  <link name="hand_crank_left_1">
+    <inertial>
+      <origin xyz="-0.0022205116683016307 0.030310152908367582 0.0038498333333346216" rpy="0 0 0" />
+      <mass value="0.021694474752282252" />
+      <inertia ixx="7e-06" iyy="0.0" izz="7e-06" ixy="0.0" iyz="0.0" ixz="0.0" />
+    </inertial>
+    <visual>
+      <origin xyz="0.082125 -0.010579 0.011183" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="package://width22mm_hand_for_urdf_description/meshes/crank_left_1.stl" scale="0.001 0.001 0.001" />
+      </geometry>
+      <material name="silver" />
+    </visual>
+    <collision>
+      <origin xyz="0.082125 -0.010579 0.011183" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="package://width22mm_hand_for_urdf_description/meshes/crank_left_1.stl" scale="0.001 0.001 0.001" />
+      </geometry>
+    </collision>
+  </link>
+  <joint name="hand_rev1" type="revolute">
+    <origin xyz="0.0 0.06 0.018516" rpy="0 0 0" />
+    <parent link="hand_2nd_link_right_1" />
+    <child link="hand_1st_link_right_1" />
+    <axis xyz="0 0 -1" />
+    <limit lower="-1.570796" upper="0.0" effort="100" velocity="100" />
+  </joint>
+  <joint name="hand_rev2" type="revolute">
+    <origin xyz="0.0 0.06 -0.003484" rpy="0 0 0" />
+    <parent link="hand_2nd_link_left_1" />
+    <child link="hand_1st_link_left_1" />
+    <axis xyz="0 0 1" />
+    <limit lower="-1.570796" upper="0.0" effort="100" velocity="100" />
+  </joint>
+  <joint name="hand_rev3" type="revolute">
+    <origin xyz="0.0724 0.0 -0.018333" rpy="0 0 0" />
+    <parent link="hand_parallel_1_right_1" />
+    <child link="hand_2nd_link_right_1" />
+    <axis xyz="0 0 -1" />
+    <limit lower="0.0" upper="1.570796" effort="100" velocity="100" />
+  </joint>
+  <joint name="hand_rev4" type="revolute">
+    <origin xyz="-0.0724 0.0 0.003667" rpy="0 0 0" />
+    <parent link="hand_parallel_1_left_1" />
+    <child link="hand_2nd_link_left_1" />
+    <axis xyz="0 0 -1" />
+    <limit lower="-1.570796" upper="0.0" effort="100" velocity="100" />
+  </joint>
+  <joint name="hand_rev7" type="continuous">
+    <origin xyz="0.0724 0.0 1e-06" rpy="0 0 0" />
+    <parent link="hand_parallel_2_right_1" />
+    <child link="hand_parallel_3_right_1" />
+    <axis xyz="-0.0 0.0 -1.0" />
+  </joint>
+  <joint name="hand_rev8" type="continuous">
+    <origin xyz="-0.0724 0.0 1e-06" rpy="0 0 0" />
+    <parent link="hand_parallel_2_left_1" />
+    <child link="hand_parallel_3_left_1" />
+    <axis xyz="-0.0 0.0 1.0" />
+  </joint>
+  <joint name="hand_rev9" type="continuous">
+    <origin xyz="0.004703 0.010579 0.0" rpy="0 0 0" />
+    <parent link="hand_base_link" />
+    <child link="hand_parallel_1_right_1" />
+    <axis xyz="-0.0 0.0 1.0" />
+  </joint>
+  <joint name="hand_rev10" type="continuous">
+    <origin xyz="-0.004725 0.010579 0.0" rpy="0 0 0" />
+    <parent link="hand_base_link" />
+    <child link="hand_parallel_1_left_1" />
+    <axis xyz="0.0 -0.0 -1.0" />
+  </joint>
+  <joint name="hand_rev11" type="revolute">
+    <origin xyz="0.014988 -0.009992 0.0" rpy="0 0 0" />
+    <parent link="hand_base_link" />
+    <child link="hand_parallel_2_right_1" />
+    <axis xyz="-0.0 -0.0 1.0" />
+    <limit upper="1.570796" lower="0.0" effort="100" velocity="100" />
+  </joint>
+  <joint name="hand_rev12" type="revolute">
+    <origin xyz="-0.015011 -0.009992 0.0" rpy="0 0 0" />
+    <parent link="hand_base_link" />
+    <child link="hand_parallel_2_left_1" />
+    <axis xyz="-0.0 0.0 1.0" />
+    <limit upper="0.0" lower="-1.570796" effort="100" velocity="100" />
+  </joint>
+  <joint name="hand_rev13" type="continuous">
+    <origin xyz="-0.014988 -0.039992 -0.009083" rpy="0 0 0" />
+    <parent link="hand_base_link" />
+    <child link="hand_partial_gear_1_1" />
+    <axis xyz="0.0 -0.0 -1.0" />
+  </joint>
+  <joint name="hand_rev14" type="continuous">
+    <origin xyz="0.0 0.0 0.003668" rpy="0 0 0" />
+    <parent link="hand_parallel_2_left_1" />
+    <child link="hand_gear_left_1" />
+    <axis xyz="-0.0 0.0 1.0" />
+  </joint>
+  <joint name="hand_rev15" type="continuous">
+    <origin xyz="0.015012 -0.009992 0.01075" rpy="0 0 0" />
+    <parent link="hand_base_link" />
+    <child link="hand_gear_right_1" />
+    <axis xyz="0.0 -0.0 -1.0" />
+  </joint>
+  <joint name="hand_rev16" type="continuous">
+    <origin xyz="-0.004703 0.010579 -0.03905" rpy="0 0 0" />
+    <parent link="hand_base_link" />
+    <child link="hand_sprocket_left_1" />
+    <axis xyz="0.0 -0.0 1.0" />
+  </joint>
+  <joint name="hand_rev17" type="continuous">
+    <origin xyz="0.004703 0.010579 0.024805" rpy="0 0 0" />
+    <parent link="hand_base_link" />
+    <child link="hand_sprocket_right_1" />
+    <axis xyz="-0.0 0.0 -1.0" />
+  </joint>
+  <joint name="hand_rev20" type="continuous">
+    <origin xyz="-0.005285 0.020571 -0.011184" rpy="0 0 0" />
+    <parent link="hand_parallel_3_right_1" />
+    <child link="hand_crank_right_1" />
+    <axis xyz="0.0 0.0 -1.0" />
+  </joint>
+  <joint name="hand_rev21" type="continuous">
+    <origin xyz="0.005286 0.020571 -0.011184" rpy="0 0 0" />
+    <parent link="hand_parallel_3_left_1" />
+    <child link="hand_crank_left_1" />
+    <axis xyz="-0.0 -0.0 -1.0" />
+  </joint>
+  <joint name="flange_to_hand" type="fixed">
+    <parent link="flange" />
+    <child link="hand_base_link" />
+    <origin xyz="0.079667 0 0" rpy="${pi/2} ${pi/2} 0" />
+  </joint>
+  <link name="fingertip_link"/>
+
+  <joint name="right_fingertip_fixed" type="fixed">
+    <parent link="hand_1st_link_right_1"/>
+    <child link="fingertip_link"/>
+    <origin xyz="0 0 -0.015" rpy="0 0 0"/>
+  </joint>
+
+</robot>
